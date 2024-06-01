@@ -18,16 +18,22 @@ dataSources:
       entities:
         - GraphNetwork
         - Token
+        - LearningPeriod
+        - ModelState
       abis:
         - name: UnstoppableModel
           file: ../out/UnstoppableModel.sol/UnstoppableModel.json
       eventHandlers:
 #        - event: Initialized(uint8)
 #          handler: handleInitialized
-        - event: WhitelistAccessGranted(address)
-          handler: handleWhitelistAccessGranted
-        - event: WhitelistAccessRevoked(address)
-          handler: handleWhitelistAccessRevoked
+        - event: ApplyToLearnPeriod(indexed address,uint256,uint256,uint256)
+          handler: handleApplyToLearnPeriod
+        - event: SubmitState(indexed uint256,string,uint256)
+          handler: handleSubmitState
+        - event: SuspectState(indexed uint256,address,uint256)
+          handler: handleSuspectState
+        - event: WithdrawCollateralPerLearningPeriod(indexed uint256,address)
+          handler: handleWithdrawCollateralPerLearningPeriod
 #      blockHandlers:
 #        - handler: handleNewBlock
       file: ./src/mappings/unstoppableModel.ts

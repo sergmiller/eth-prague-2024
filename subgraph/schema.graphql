@@ -11,3 +11,26 @@ type Token @entity {
   decimals: Int!
 }
 
+type LearningPeriod @entity {
+  id: ID! # Number in list
+  worker: String!
+  start: BigInt!
+  end: BigInt!
+  submittedStates: BigInt!
+  collateralWithdrawn: Boolean!
+  anyStateSuspected: Boolean!
+  deleted: Boolean!
+
+  modelStates: [ModelState!] @derivedFrom(field: "learningPeriod")
+}
+
+type ModelState @entity {
+  "Created at"
+  id: ID! # URL
+  url: String!
+  submittedAt: BigInt!
+  suspectedAt: BigInt!
+  suspectedBy: String!
+  learningPeriod: LearningPeriod!
+  deleted: Boolean!
+}
