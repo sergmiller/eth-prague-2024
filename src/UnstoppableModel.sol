@@ -173,9 +173,6 @@ contract UnstoppableModel is Ownable {
                 }
                 delete modelStates[i];
             }
-
-//            TODO stopped here.
-
         } else {
             LearningPeriod storage learningPeriod = learningPeriods[suspectedState.learningPeriodId];
             // Remove evidence of suspection.
@@ -183,5 +180,7 @@ contract UnstoppableModel is Ownable {
             suspectedState.suspectedAt = 0;
             suspectedState.suspectedBy = address(0);
         }
+
+//        TODO: event
     }
 }

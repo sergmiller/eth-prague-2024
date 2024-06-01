@@ -52,7 +52,7 @@ contract TestUnstoppableModelContract is Test {
         uint256 stateLearningSecondsMax = unstoppableModelContract.stateLearningSecondsMax();
         uint256 expectedStatesPerPeriod = unstoppableModelContract.expectedStatesPerPeriod();
         uint availableToSuspectSeconds = unstoppableModelContract.availableToSuspectSeconds();
-        StdCheats.skip(stateLearningSecondsMax * expectedStatesPerPeriod + availableToSuspectSeconds);
+        StdCheats.skip(stateLearningSecondsMax * expectedStatesPerPeriod + availableToSuspectSeconds + 1);
 
         unstoppableModelContract.withdrawCollateralPerLearningPeriod(1);
     }
