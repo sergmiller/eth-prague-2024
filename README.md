@@ -36,10 +36,14 @@ Fraud-Proofer - Independently validates selected steps within a specific timefra
 ### Deploy
 
 ```bash
-source .env && forge script --chain sepolia script/NFT.s.sol:MyScript --rpc-url $SEPOLIA_RPC_URL --broadcast  -vvvv --legacy
+source .env && forge script --chain sepolia script/Deploy.s.sol:Deploy --rpc-url $SEPOLIA_RPC_URL --broadcast  -vvvv --legacy
 ```
 
 or to Anvil
 ```
-forge script script/NFT.s.sol:MyScript --fork-url http://localhost:8545 --broadcast
+forge script script/Deploy.s.sol:Deploy --fork-url http://localhost:8545 --broadcast
 ```
+
+questions:
+- How DAO would be incentivised to act honestly? Like not to collude with the Worker to get the Worker's stake?
+- Do you have a specific dataset in mind?
