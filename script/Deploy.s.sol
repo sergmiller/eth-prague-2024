@@ -27,7 +27,7 @@ contract Deploy is Deployment, Script {
 
         // TODO: add link
         string memory dataURI = "https:data";
-        UnstoppableModel unstoppableModel = UnstoppableModel(_deployContract("UnstoppableModel", "UnstoppableModel", abi.encode(dataURI)));
+        UnstoppableModel unstoppableModelContract = UnstoppableModel(_deployContract("UnstoppableModel", "UnstoppableModel", abi.encode(dataURI)));
 
         _printDeployments();
         _saveDeployment(fullDeploymentsPath);

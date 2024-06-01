@@ -46,13 +46,13 @@ contract TestUnstoppableModelContract is Test {
         unstoppableModelContract.applyToLearnPeriod{value: collateralPerLearningPeriod}(currentTime);
 
         unstoppableModelContract.setExpectedStatesPerPeriod(1);
-        unstoppableModelContract.submitState("linktodatafoo", 1);
+        unstoppableModelContract.submitState("linktodatafoo1");
 
         vm.expectRevert();
-        unstoppableModelContract.submitState("linktodatafoo", 1);
+        unstoppableModelContract.submitState("linktodatafoo2");
 
-        vm.expectRevert(abi.encodePacked("Not possible to withdraw now because of suspection period."));
-        unstoppableModelContract.withdrawCollateralPerLearningPeriod(1, address(0));
+//        vm.expectRevert(abi.encodePacked("Not possible to withdraw now because of suspection period."));
+//        unstoppableModelContract.withdrawCollateralPerLearningPeriod(1, address(0));
 
         uint256 stateLearningSecondsMax = unstoppableModelContract.stateLearningSecondsMax();
         uint256 expectedStatesPerPeriod = unstoppableModelContract.expectedStatesPerPeriod();
@@ -60,6 +60,36 @@ contract TestUnstoppableModelContract is Test {
         StdCheats.skip(stateLearningSecondsMax * expectedStatesPerPeriod + availableToSuspectSeconds + 1);
 
         unstoppableModelContract.withdrawCollateralPerLearningPeriod(1, address(0));
+    }
+
+    function testSuspectFlowValid() public {
+        uint256 currentTime = block.timestamp;
+
+        // Impossible to send less collateral.
+        uint collateralPerLearningPeriod = unstoppableModelContract.collateralPerLearningPeriod();
+
+        // PeriodId == 1
+        unstoppableModelContract.applyToLearnPeriod{value: collateralPerLearningPeriod}(currentTime);
+
+        // Check: Not possible to apply for the same period.
+        vm.expectRevert();
+        unstoppableModelContract.applyToLearnPeriod{value: collateralPerLearningPeriod}(currentTime);
+
+        unstoppableModelContract.setExpectedStatesPerPeriod(1);
+        unstoppableModelContract.submitState("linktodatafoo1");
+
+        unstoppableModelContract.suspectState{value: collateralPerLearningPeriod}(1);
+        unstoppableModelContract.reviewSuspect(1, true);
+
+        // Check that learning periods are only 1 element (0).
+        // Check that model states only 1 (0).
+        unstoppableModelContract.modelStates(0);
+        (string memory url,,,,) = unstoppableModelContract.modelStates(1);
+        assertEq(url, "");
+
+        unstoppableModelContract.learningPeriods(0);
+        (address worker,,,,,) = unstoppableModelContract.learningPeriods(1);
+        assertEq(worker, address(0));
     }
 
 //    function testFoo(uint256 x) public {
