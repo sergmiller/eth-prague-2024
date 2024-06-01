@@ -3,7 +3,7 @@ import {
     WithdrawCollateralPerLearningPeriod
 } from "../../generated/UnstoppableModel/UnstoppableModel";
 import {LearningPeriod, ModelState} from "../../generated/schema";
-import {ZERO_BIG_INT} from "../models";
+import {UNO_BIG_INT, ZERO_BIG_INT} from "../models";
 import {formatAddress} from "./utils";
 
 // event ApplyToLearnPeriod(address indexed worker, uint256 start, uint256 end, uint256 expectedStates);
@@ -35,7 +35,7 @@ export function handleSubmitState(event: SubmitState): void {
     entity.deleted = false
     entity.save();
 
-    learningPeriod.submittedStates  = learningPeriod.submittedStates.plus(ZERO_BIG_INT)
+    learningPeriod.submittedStates  = learningPeriod.submittedStates.plus(UNO_BIG_INT)
     learningPeriod.save()
 }
 
