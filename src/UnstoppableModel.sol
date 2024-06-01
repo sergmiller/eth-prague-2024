@@ -16,7 +16,7 @@ contract UnstoppableModel is Ownable {
     // Uploaded to IPFS Model data.
     string public modelDataURL;
     // Only owner could change the this.
-    uint256 public expectedStatesPerPeriod = 1;
+    uint256 public expectedStatesPerPeriod = 2;
     uint256 public stateLearningSecondsMax = 100;
     // After the end period fraud proofer has some time to suspect.
     uint256 public availableToSuspectSeconds = 100;
@@ -26,7 +26,8 @@ contract UnstoppableModel is Ownable {
     event ApplyToLearnPeriod(address indexed worker, uint256 start, uint256 end, uint256 expectedStates, uint256 learningPeriodId);
     event SubmitState(uint256 indexed learningPeriodId, string url, uint256 submittedAt);
     event WithdrawCollateralPerLearningPeriod(uint256 indexed learningPeriodId, address worker);
-    event SuspectState(uint256 indexed stateId, address suspectedBy, uint256 suspectedAt);
+    event SuspectState(uint256 indexed stateId, address suspectedBy, uint256 suspectedAt, string url);
+//    TODO: event avout resolution...
 
     // Each future state should be better than the previous one, otherwise it is possible to suspect.
     struct ModelState {
@@ -121,7 +122,8 @@ contract UnstoppableModel is Ownable {
         require(learningPeriod.submittedStates == expectedStatesPerPeriod, "To all states submitted.");
         require(!learningPeriod.anyStateSuspected, "State is currently suspected.");
         uint256 currentTime = block.timestamp;
-        require(currentTime > learningPeriod.end + availableToSuspectSeconds, "Not possible to withdraw now because of suspection period.");
+//        TODO: debug.
+//        require(currentTime > learningPeriod.end + availableToSuspectSeconds, "Not possible to withdraw now because of suspection period.");
         require(address(this).balance >= collateralPerLearningPeriod, "Not enough balance.");
 
         (bool success, ) = payable(withdrawTo).call{value: collateralPerLearningPeriod}("");
@@ -145,7 +147,7 @@ contract UnstoppableModel is Ownable {
         LearningPeriod storage learningPeriod = learningPeriods[suspectedState.learningPeriodId];
         learningPeriod.anyStateSuspected = true;
 
-        emit SuspectState(stateId, msg.sender, currentTime);
+        emit SuspectState(stateId, msg.sender, currentTime, suspectedState.url);
     }
 
     function reviewSuspect(uint256 stateId, bool isSuspectValid) external onlyOwner {
