@@ -3,4 +3,5 @@ out/
 .idea
 .env
 
+.ipynb_checkpoints/
 *-checkpoint.ipynb
