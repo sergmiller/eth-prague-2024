@@ -1,0 +1,35 @@
+{
+  "name": "ethprague2024-subgraph",
+  "license": "UNLICENSED",
+  "scripts": {
+    "compile": "graph codegen && graph build",
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy:studio:stage": "graph deploy --network mumbai --network-file config/networks.json unstoppable-models",
+    "create:local": "graph create --node http://localhost:8020 unstoppable-models",
+    "deploy:local": "graph deploy --node http://localhost:8020 --ipfs http://localhost:5001 --network local --network-file configs/local-networks-config.json --version-label 0.0.0 unstoppable-models",
+    "test": "graph test",
+    "graph-node": "docker-compose up -d",
+    "graph-local-clean": "docker-compose down -v",
+    "fmt": "prettier 'src/**/*.{ts,json}' --w",
+    "import-config-networks": "tsc scripts/import-config-networks.ts && node scripts/import-config-networks.js"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.67.4",
+    "@graphprotocol/graph-ts": "0.32.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-license-header": "^0.6.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "matchstick-as": "0.5.0",
+    "prettier": "^3.0.2",
+    "typescript": "^5.3.3"
+  },
+  "version": "0.13.13"
+}

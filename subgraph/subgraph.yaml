@@ -1,0 +1,33 @@
+specVersion: 0.0.8
+description: Unstoppable Models Contract Subgraph
+repository: https://github.com/fluencelabs/deal
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: UnstoppableModel
+    network: local
+    source:
+      abi: UnstoppableModel
+      address: "0x0B306BF915C4d645ff596e518fAf3F9669b97016"
+      startBlock: 23
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - GraphNetwork
+        - Token
+      abis:
+        - name: UnstoppableModel
+          file: ../out/UnstoppableModel.sol/UnstoppableModel.json
+      eventHandlers:
+#        - event: Initialized(uint8)
+#          handler: handleInitialized
+        - event: WhitelistAccessGranted(address)
+          handler: handleWhitelistAccessGranted
+        - event: WhitelistAccessRevoked(address)
+          handler: handleWhitelistAccessRevoked
+#      blockHandlers:
+#        - handler: handleNewBlock
+      file: ./src/mappings/unstoppableModel.ts
