@@ -116,20 +116,19 @@ contract UnstoppableModel is Ownable {
     }
 
     // Should have not suspection and allowed time.
-    function withdrawCollateralPerLearningPeriod(uint256 learningPeriodId) external {
+    function withdrawCollateralPerLearningPeriod(uint256 learningPeriodId, address withdrawTo) external {
         LearningPeriod storage learningPeriod = learningPeriods[learningPeriodId];
         require(learningPeriod.worker == msg.sender, "Not your learning period.");
         require(learningPeriod.submittedStates == expectedStatesPerPeriod, "To all states submitted.");
         require(!learningPeriod.anyStateSuspected, "State is currently suspected.");
         uint256 currentTime = block.timestamp;
         require(currentTime > learningPeriod.end + availableToSuspectSeconds, "Not possible to withdraw now because of suspection period.");
+        require(address(this).balance >= collateralPerLearningPeriod, "Not enough balance.");
 
-        (bool transferTx, ) = msg.sender.call{value: collateralPerLearningPeriod}("");
-        if (!transferTx) {
-            revert WithdrawError();
-        }
+        (bool success, ) = payable(withdrawTo).call{value: collateralPerLearningPeriod}("");
+        if (!success) revert WithdrawError();
 
-        // TODO: delete after submit.
+        // TODO: flush lists after withdraw.
 
         emit WithdrawCollateralPerLearningPeriod(learningPeriodId, msg.sender);
     }
