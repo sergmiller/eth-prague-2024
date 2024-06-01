@@ -29,8 +29,8 @@ type ModelState @entity {
   id: ID! # URL
   url: String!
   submittedAt: BigInt!
-  suspectedAt: BigInt!
-  suspectedBy: String!
+  suspectedAt: BigInt
+  suspectedBy: String
   learningPeriod: LearningPeriod!
   deleted: Boolean!
 }

@@ -26,7 +26,7 @@ dataSources:
       eventHandlers:
 #        - event: Initialized(uint8)
 #          handler: handleInitialized
-        - event: ApplyToLearnPeriod(indexed address,uint256,uint256,uint256)
+        - event: ApplyToLearnPeriod(indexed address,uint256,uint256,uint256,uint256)
           handler: handleApplyToLearnPeriod
         - event: SubmitState(indexed uint256,string,uint256)
           handler: handleSubmitState

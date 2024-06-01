@@ -23,7 +23,7 @@ contract UnstoppableModel is Ownable {
     // TODO: use different collateral per suspect and period apply.
     uint256 public collateralPerLearningPeriod = 0.001 ether;
 
-    event ApplyToLearnPeriod(address indexed worker, uint256 start, uint256 end, uint256 expectedStates);
+    event ApplyToLearnPeriod(address indexed worker, uint256 start, uint256 end, uint256 expectedStates, uint256 learningPeriodId);
     event SubmitState(uint256 indexed learningPeriodId, string url, uint256 submittedAt);
     event WithdrawCollateralPerLearningPeriod(uint256 indexed learningPeriodId, address worker);
     event SuspectState(uint256 indexed stateId, address suspectedBy, uint256 suspectedAt);
@@ -96,8 +96,7 @@ contract UnstoppableModel is Ownable {
         );
         learningPeriods.push(newLearningPeriod);
 
-        // ApplyToLearnPeriod(address indexed worker, uint256 start, uint256 end, uint256 expectedStates);
-        emit ApplyToLearnPeriod(msg.sender, start, start + expectedStatesPerPeriod * stateLearningSecondsMax, expectedStatesPerPeriod);
+        emit ApplyToLearnPeriod(msg.sender, start, start + expectedStatesPerPeriod * stateLearningSecondsMax, expectedStatesPerPeriod, learningPeriods.length - 1);
     }
 
     function submitState(string memory url_, uint256 learningPeriodId) external {
