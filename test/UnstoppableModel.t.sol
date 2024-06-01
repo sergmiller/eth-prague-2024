@@ -49,12 +49,12 @@ contract TestUnstoppableModelContract is Test {
         vm.expectRevert(abi.encodePacked("Not possible to withdraw now because of suspection period."));
         unstoppableModelContract.withdrawCollateralPerLearningPeriod(1);
 
-//        uint256 stateLearningSecondsMax = unstoppableModelContract.stateLearningSecondsMax();
-//        uint256 expectedStatesPerPeriod = unstoppableModelContract.expectedStatesPerPeriod();
-//        uint availableToSuspectSeconds = unstoppableModelContract.availableToSuspectSeconds();
-//        StdCheats.skip(stateLearningSecondsMax * expectedStatesPerPeriod + availableToSuspectSeconds);
-//
-//        unstoppableModelContract.withdrawCollateralPerLearningPeriod(1);
+        uint256 stateLearningSecondsMax = unstoppableModelContract.stateLearningSecondsMax();
+        uint256 expectedStatesPerPeriod = unstoppableModelContract.expectedStatesPerPeriod();
+        uint availableToSuspectSeconds = unstoppableModelContract.availableToSuspectSeconds();
+        StdCheats.skip(stateLearningSecondsMax * expectedStatesPerPeriod + availableToSuspectSeconds);
+
+        unstoppableModelContract.withdrawCollateralPerLearningPeriod(1);
     }
 
 //    function testFoo(uint256 x) public {
