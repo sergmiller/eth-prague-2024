@@ -33,8 +33,28 @@ contract TestUnstoppableModelContract is Test {
     function testSuccessFlow() public {
         uint256 currentTime = block.timestamp;
 
-        unstoppableModelContract.applyToLearnPeriod(currentTime);
+        // PeriodId == 1
+        unstoppableModelContract.applyToLearnPeriod{value: 0.001 ether}(currentTime);
 
+        // Check: Not possible to apply for the same period.
+        vm.expectRevert();
+        unstoppableModelContract.applyToLearnPeriod{value: 0.001 ether}(currentTime);
+
+        unstoppableModelContract.setExpectedStatesPerPeriod(1);
+        unstoppableModelContract.submitState("linktodatafoo", 1);
+
+        vm.expectRevert();
+        unstoppableModelContract.submitState("linktodatafoo", 1);
+
+        vm.expectRevert(abi.encodePacked("Not possible to withdraw now because of suspection period."));
+        unstoppableModelContract.withdrawCollateralPerLearningPeriod(1);
+
+//        uint256 stateLearningSecondsMax = unstoppableModelContract.stateLearningSecondsMax();
+//        uint256 expectedStatesPerPeriod = unstoppableModelContract.expectedStatesPerPeriod();
+//        uint availableToSuspectSeconds = unstoppableModelContract.availableToSuspectSeconds();
+//        StdCheats.skip(stateLearningSecondsMax * expectedStatesPerPeriod + availableToSuspectSeconds);
+//
+//        unstoppableModelContract.withdrawCollateralPerLearningPeriod(1);
     }
 
 //    function testFoo(uint256 x) public {
