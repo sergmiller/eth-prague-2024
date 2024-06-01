@@ -16,7 +16,7 @@ contract UnstoppableModel is Ownable {
     // Uploaded to IPFS Model data.
     string public modelDataURL;
     // Only owner could change the this.
-    uint256 public expectedStatesPerPeriod = 10;
+    uint256 public expectedStatesPerPeriod = 1;
     uint256 public stateLearningSecondsMax = 100;
     // After the end period fraud proofer has some time to suspect.
     uint256 public availableToSuspectSeconds = 100;
@@ -61,7 +61,22 @@ contract UnstoppableModel is Ownable {
         string memory modelDataURL_
     ) Ownable(msg.sender) {
         modelDataURL = modelDataURL_;
+        LearningPeriod memory newLearningPeriod = LearningPeriod(
+            msg.sender,
+            0,
+            0,
+            0,
+            false,
+            false
+        );
+        learningPeriods.push(newLearningPeriod);
     }
+
+    function setExpectedStatesPerPeriod(uint256 newExpectedStatesPerPeriod) external onlyOwner {
+        expectedStatesPerPeriod = newExpectedStatesPerPeriod;
+    }
+    //    TODO: add function to change model hyper params as well (DAO could change it).
+
 
     // @dev By applying to learn period, worker should submit at least EXPECTED_STATES_PER_PERIOD states.
     //    TODO: payable.
@@ -113,6 +128,8 @@ contract UnstoppableModel is Ownable {
         if (!transferTx) {
             revert WithdrawError();
         }
+
+        // TODO: delete after submit.
 
         emit WithdrawCollateralPerLearningPeriod(learningPeriodId, msg.sender);
     }
