@@ -7,6 +7,15 @@ import "./Deployment.sol";
 
 // It deploys all contracts.
 contract Deploy is Deployment, Script {
+    string constant DEPLOYMENTS_PATH = "/deployments/";
+    string private fullDeploymentsPath;
+
+    function setUp() external {
+        string memory envName = vm.envString("CONTRACTS_ENV_NAME");
+        string memory fileNames = string.concat(envName, ".json");
+        fullDeploymentsPath = string.concat(vm.projectRoot(), DEPLOYMENTS_PATH, fileNames);
+    }
+
     function run() external {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployerPrivateKey);
@@ -15,6 +24,7 @@ contract Deploy is Deployment, Script {
         UnstoppableModelErc20 token = UnstoppableModelErc20(_deployContract("UnstoppableModelErc20", "UnstoppableModelErc20", args));
 
         _printDeployments();
+        _saveDeployment(fullDeploymentsPath);
 
         vm.stopBroadcast();
     }
