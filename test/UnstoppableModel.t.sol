@@ -33,12 +33,17 @@ contract TestUnstoppableModelContract is Test {
     function testSuccessFlow() public {
         uint256 currentTime = block.timestamp;
 
+        // Impossible to send less collateral.
+        uint collateralPerLearningPeriod = unstoppableModelContract.collateralPerLearningPeriod();
+        vm.expectRevert();
+        unstoppableModelContract.applyToLearnPeriod{value: collateralPerLearningPeriod - 1}(currentTime);
+
         // PeriodId == 1
-        unstoppableModelContract.applyToLearnPeriod{value: 0.001 ether}(currentTime);
+        unstoppableModelContract.applyToLearnPeriod{value: collateralPerLearningPeriod}(currentTime);
 
         // Check: Not possible to apply for the same period.
         vm.expectRevert();
-        unstoppableModelContract.applyToLearnPeriod{value: 0.001 ether}(currentTime);
+        unstoppableModelContract.applyToLearnPeriod{value: collateralPerLearningPeriod}(currentTime);
 
         unstoppableModelContract.setExpectedStatesPerPeriod(1);
         unstoppableModelContract.submitState("linktodatafoo", 1);
@@ -54,7 +59,7 @@ contract TestUnstoppableModelContract is Test {
         uint availableToSuspectSeconds = unstoppableModelContract.availableToSuspectSeconds();
         StdCheats.skip(stateLearningSecondsMax * expectedStatesPerPeriod + availableToSuspectSeconds + 1);
 
-        unstoppableModelContract.withdrawCollateralPerLearningPeriod(1);
+//        unstoppableModelContract.withdrawCollateralPerLearningPeriod(1);
     }
 
 //    function testFoo(uint256 x) public {
