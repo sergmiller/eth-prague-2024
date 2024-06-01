@@ -28,3 +28,18 @@ Worker - Acquires a mutex (with a deposit) and attempts to perform a weight upda
 Validator - Token holders who resolve disputes. Validators receive rewards regardless of the outcome but are incentivized to act honestly to promote project growth.
 
 Fraud-Proofer - Independently validates selected steps within a specific timeframe and can escalate disputes to the Validator if suspicious activity is detected (posting a deposit). If a correctly identified error is confirmed by the Validator, the Fraud-Proofer receives the Worker's stake.
+
+# Develop
+
+## Contract
+
+### Deploy
+
+```bash
+source .env && forge script --chain sepolia script/NFT.s.sol:MyScript --rpc-url $SEPOLIA_RPC_URL --broadcast  -vvvv --legacy
+```
+
+or to Anvil
+```
+forge script script/NFT.s.sol:MyScript --fork-url http://localhost:8545 --broadcast
+```
