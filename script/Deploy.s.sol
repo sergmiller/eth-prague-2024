@@ -3,6 +3,7 @@ pragma solidity >=0.8.10;
 
 import "forge-std/Script.sol";
 import "../src/UnstoppableModelErc20.sol";
+import "../src/UnstoppableModel.sol";
 import "./Deployment.sol";
 
 // It deploys all contracts.
@@ -22,6 +23,11 @@ contract Deploy is Deployment, Script {
 
         bytes memory args = abi.encode("UnstoppableModelErc20", "UMC", 18);
         UnstoppableModelErc20 token = UnstoppableModelErc20(_deployContract("UnstoppableModelErc20", "UnstoppableModelErc20", args));
+
+
+        // TODO: add link
+        string memory dataURI = "https:data";
+        UnstoppableModel unstoppableModel = UnstoppableModel(_deployContract("UnstoppableModel", "UnstoppableModel", abi.encode(dataURI)));
 
         _printDeployments();
         _saveDeployment(fullDeploymentsPath);
