@@ -165,13 +165,18 @@ contract UnstoppableModel is Ownable {
                 if (learningPeriodId < learningPeriods.length) {
                     LearningPeriod storage learningPeriod = learningPeriods[learningPeriodId];
                     if (learningPeriod.worker != msg.sender) {
-                        msg.sender.call{value: collateralPerLearningPeriod}("");
-                        // TODO: how to catch error properly for this case.
+                        address sentTo = learningPeriod.worker;
+                        (bool success, ) = payable(sentTo).call{value: collateralPerLearningPeriod}("");
+                        if (!success) revert WithdrawError();
                     }
                     delete learningPeriods[learningPeriodId];
                 }
                 delete modelStates[i];
             }
+            address sendTo = suspectedState.suspectedBy;
+            (bool success, ) = payable(sendTo).call{value: collateralPerLearningPeriod}("");
+            if (!success) revert WithdrawError();
+
         } else {
             LearningPeriod storage learningPeriod = learningPeriods[suspectedState.learningPeriodId];
             // Remove evidence of suspection.
