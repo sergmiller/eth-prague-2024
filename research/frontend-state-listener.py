@@ -165,6 +165,25 @@ def scenario():
     worker_make_update(11)
 
 
+def calc_losses(task):
+    N = 5
+    losses = []
+    for i in range(N):
+        model = model_fn()
+        model.load_state_dict(model.state_dict())
+        losses.append(task.calc_global_loss(model).item())
+    return losses
+        
+
+def main():
+    torch.manual_seed(42)
+    task = Task(Xt, yt, batch_size=32, model_fn=model_fn)
+    while True:
+        losses = calc_losses(task)
+        draw(losses)
+        time.sleep(1)
+
+
 # fig, ax = plt.subplots()
 
 
@@ -175,8 +194,9 @@ def scenario():
 # Set the title of the app
 st.title('Model train loss')
 
-scenario()
+# scenario()
 
+main()
 
 
 
