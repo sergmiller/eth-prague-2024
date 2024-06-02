@@ -7,7 +7,7 @@ const REQUIRED_DEPLOYED_CONTRACT_NAMES = [
   "UnstoppableModelErc20",
   "UnstoppableModel",
 ];
-const STANDS = ["local", "dev"];
+const STANDS = ["local", "dev", "cardona"];
 // Subgraph repo pattern used to have config dir with networks.json to support
 //  deploy on different networks: {mainnet, mumbai, etc}.
 //  In our case when we can deploy different stands on the same network, e.g. mumbai we have
@@ -16,10 +16,12 @@ const STANDS = ["local", "dev"];
 const STAND_TO_SUBGRAPH_CONFIG = {
   dev: "dev-networks-config.json",
   local: "local-networks-config.json",
+  "cardona": "cardona-networks-config.json",
 };
 const STAND_TO_SUBGRAPH_NETWORK = {
   dev: "sepolia",
   local: "local",
+  cardona: "cardona",
 };
 
 // Save subgraph networks config from info of several contracts.
