@@ -32,7 +32,8 @@ Fraud-Proofer - Independently validates selected steps within a specific timefra
 # Off-chain parts
 ### frontend
 observes whole training process
-``` cd research && \
+```
+cd research && \
 python3 -m pip install -r requirements.txt && \
 python3 -m streamlit run frontend-state-listener.py
 ```
@@ -40,7 +41,8 @@ python3 -m streamlit run frontend-state-listener.py
 
 ### worker
 performs updates and syncs results with contract
-``` cd research && \
+```
+cd research && \
 python3 -m pip install -r requirements.txt && \
 python3 worker.py
 ```
