@@ -16,7 +16,7 @@ const STANDS = ["local", "dev", "cardona"];
 const STAND_TO_SUBGRAPH_CONFIG = {
   dev: "dev-networks-config.json",
   local: "local-networks-config.json",
-  "cardona": "cardona-networks-config.json",
+  cardona: "cardona-networks-config.json",
 };
 const STAND_TO_SUBGRAPH_NETWORK = {
   dev: "sepolia",
