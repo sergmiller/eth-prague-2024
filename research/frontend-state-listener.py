@@ -12,7 +12,6 @@ import time
 from sklearn.datasets import load_iris
 
 import matplotlib.pyplot as plt
-from IPython.display import display, clear_output
 
 from utils import Task, model_fn, criterion, compare, get_algorithm, get_default_task, get_all_good_models_params
 

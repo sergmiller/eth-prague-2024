@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-import numpy as np
-import pandas as pd
 import torch
 
 import os
@@ -13,7 +11,6 @@ import time
 from sklearn.datasets import load_iris
 
 import matplotlib.pyplot as plt
-from IPython.display import display, clear_output
 
 from subgrounds import Subgrounds
 import ipfs_api
