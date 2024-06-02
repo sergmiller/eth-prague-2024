@@ -25,6 +25,9 @@ STATE_MODEL_IPFS = "modelStates_url"
 STATE_BS_TIME = "modelStates_submittedAt"
 DATA_DIR = "data"
 
+if not os.path.exists(DATA_DIR):
+    os.makedirs(DATA_DIR)
+
 def read_all_good_states_links():
     sg = Subgrounds()
     sub = sg.load_subgraph(DEFAULT_SUBGRAPH_PATH)
