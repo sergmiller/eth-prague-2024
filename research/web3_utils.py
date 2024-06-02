@@ -10,7 +10,10 @@ load_dotenv()
 def call_contract(method, arg, value=0):
     load_dotenv()
     
-    w3 = Web3(Web3.HTTPProvider('http://127.0.0.1:8545'))
+    # w3 = Web3(Web3.HTTPProvider('http://127.0.0.1:8545'))
+    w3 = Web3(Web3.HTTPProvider('https://rpc.cardona.zkevm-rpc.com'))
+    from web3.gas_strategies.time_based import medium_gas_price_strategy
+    w3.eth.set_gas_price_strategy(medium_gas_price_strategy)
     assert w3.is_connected() == True
     
     pk = os.environ.get('PRIVATE_KEY')
