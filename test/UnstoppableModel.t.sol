@@ -21,7 +21,7 @@ contract TestUnstoppableModelContract is Test {
         dev = users[1];
         vm.label(dev, "Developer");
 
-        unstoppableModelContract = new UnstoppableModel("linktodatafoo");
+        unstoppableModelContract = new UnstoppableModel("linktodatafoo", "linkToFooModelState0");
     }
 
     function testSetOwner() public {
