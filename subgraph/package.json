@@ -8,7 +8,7 @@
     "deploy:studio:stage": "graph deploy --network mumbai --network-file config/networks.json unstoppable-models",
     "create:local": "graph create --node http://localhost:8020 unstoppable-models",
     "deploy:local": "graph deploy --node http://localhost:8020 --ipfs http://localhost:5001 --network local --network-file configs/local-networks-config.json --version-label 0.0.0 unstoppable-models",
-    "deploy:studio:cardona": "graph deploy --studio --network cardona --network-file configs/cardona-networks-config.json --version-label 0.0.0 unstoppable-models",
+    "deploy:studio:cardona": "graph deploy --studio --network ethereum --network-file configs/cardona-networks-config.json --version-label 0.0.0 unstoppable-models",
     "test": "graph test",
     "graph-node": "docker-compose up -d",
     "graph-local-clean": "docker-compose down -v",
