@@ -51,7 +51,6 @@ def get_all_good_models_params():
     for s in states:
         ipfs_hash = s.split("/")[-1]
         assert ipfs_hash[0] == "Q"
-        ipfs_api.http_client.get(ipfs_hash, DATA_DIR)
         path = os.path.join(DATA_DIR, ipfs_hash)
         get_ipfs(ipfs_hash, path)
         state_dict = torch.load(path)
