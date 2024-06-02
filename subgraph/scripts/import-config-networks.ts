@@ -21,7 +21,7 @@ const STAND_TO_SUBGRAPH_CONFIG = {
 const STAND_TO_SUBGRAPH_NETWORK = {
   dev: "sepolia",
   local: "local",
-  cardona: "ethereum-cardona",
+  cardona: "polygon-zkevm-cardona",
 };
 
 // Save subgraph networks config from info of several contracts.
