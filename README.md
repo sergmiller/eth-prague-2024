@@ -29,6 +29,22 @@ Validator - Token holders who resolve disputes. Validators receive rewards regar
 
 Fraud-Proofer - Independently validates selected steps within a specific timeframe and can escalate disputes to the Validator if suspicious activity is detected (posting a deposit). If a correctly identified error is confirmed by the Validator, the Fraud-Proofer receives the Worker's stake.
 
+# Off-chain parts
+### frontend
+observes whole training process
+``` cd research && \
+python3 -m pip install -r requirements.txt && \
+python3 -m streamlit run frontend-state-listener.py
+```
+(by default it listens to Cardona smart-contract instance)
+
+### worker
+performs updates and syncs results with contract
+``` cd research && \
+python3 -m pip install -r requirements.txt && \
+python3 worker.py
+```
+
 # Deployments
 
 ## Cardona
