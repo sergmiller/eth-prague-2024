@@ -27,6 +27,7 @@ type LearningPeriod @entity {
 type ModelState @entity {
   "Created at"
   id: ID! # URL
+  legacyId: BigInt!
   url: String!
   submittedAt: BigInt!
   suspectedAt: BigInt

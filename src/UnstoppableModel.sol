@@ -27,7 +27,7 @@ contract UnstoppableModel is Ownable {
     uint256 public collateralPerLearningPeriod = 0.001 ether;
 
     event ApplyToLearnPeriod(address indexed worker, uint256 start, uint256 end, uint256 expectedStates, uint256 learningPeriodId);
-    event SubmitState(uint256 indexed learningPeriodId, string url, uint256 submittedAt);
+    event SubmitState(uint256 indexed learningPeriodId, string url, uint256 submittedAt, uint256 stateId);
     event WithdrawCollateralPerLearningPeriod(uint256 indexed learningPeriodId, address worker);
     event SuspectState(uint256 indexed stateId, address suspectedBy, uint256 suspectedAt, string url);
 //    function reviewSuspect(uint256 stateId, bool isSuspectValid) external onlyOwner {
@@ -85,7 +85,7 @@ contract UnstoppableModel is Ownable {
 
         emit ApplyToLearnPeriod(msg.sender, 0, 0, 1, 0);
         uint256 currentTime = block.timestamp;
-        emit SubmitState(0, initialModelStateURL, currentTime);
+        emit SubmitState(0, initialModelStateURL, currentTime, 0);
     }
 
     function setExpectedStatesPerPeriod(uint256 newExpectedStatesPerPeriod) external onlyOwner {
@@ -128,7 +128,7 @@ contract UnstoppableModel is Ownable {
         modelStates.push(newState);
         learningPeriod.submittedStates++;
 
-        emit SubmitState(learningPeriodId, url_, currentTime);
+        emit SubmitState(learningPeriodId, url_, currentTime, modelStates.length - 1);
     }
 
     // Should have not suspection and allowed time.

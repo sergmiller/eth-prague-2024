@@ -33,6 +33,7 @@ export function handleSubmitState(event: SubmitState): void {
     const _id = event.params.url;
     let entity = new ModelState(_id);
     entity.url = event.params.url;
+    entity.legacyId = event.params.stateId;
     entity.submittedAt = event.params.submittedAt;
     entity.learningPeriod = learningPeriod.id;
     entity.deleted = false

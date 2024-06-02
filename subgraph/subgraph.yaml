@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: UnstoppableModel
-    network: optimism-sepolia
+    network: local
     source:
       abi: UnstoppableModel
-      address: "0x6Bee58540Bb0BCf366029D63e8111A0eB76FBFE7"
-      startBlock: 12745300
+      address: "0xB468647B04bF657C9ee2de65252037d781eABafD"
+      startBlock: 337
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -26,7 +26,7 @@ dataSources:
       eventHandlers:
         - event: ApplyToLearnPeriod(indexed address,uint256,uint256,uint256,uint256)
           handler: handleApplyToLearnPeriod
-        - event: SubmitState(indexed uint256,string,uint256)
+        - event: SubmitState(indexed uint256,string,uint256,uint256)
           handler: handleSubmitState
         - event: SuspectState(indexed uint256,address,uint256,string)
           handler: handleSuspectState
