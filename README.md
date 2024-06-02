@@ -65,6 +65,12 @@ python3 worker.py
 - contracts: [zircuit.json](deployments%2Fzircuit.json)
 - subgraph [self running] http://34.32.233.93:8000/subgraphs/name/unstoppable-models-zircuit
 
+## Linea
+- not enough balance =(
+
+# Scheme
+![Overview Scheme](docs/scheme.png)
+
 # Develop
 
 ## Contract
