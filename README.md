@@ -33,11 +33,18 @@ Fraud-Proofer - Independently validates selected steps within a specific timefra
 
 ## Cardona
 - contracts: [deployments](deployments/cardona.json)
-- subgraph: https://thegraph.com/studio/subgraph/unstoppable-models
+- subgraph: https://api.studio.thegraph.com/query/77200/unstoppable-models/0.0.3
 
-# Optimism Sepolia
+## Optimism Sepolia
 - contracts: [deployments](deployments/optimismsepolia.json)
-- subgraph: https://api.studio.thegraph.com/query/77200/unstoppable-models-optimismsep/0.0.1
+- subgraph: https://api.studio.thegraph.com/query/77200/unstoppable-models-optimismsep/0.0.2
+
+## Sepolia
+- contracts: [deployments](deployments/sepolia.json)
+- subgraph: https://api.studio.thegraph.com/query/77200/unstoppable-models-sepolia/0.0.1
+
+## Zircuit
+- contracts: [zircuit.json](deployments%2Fzircuit.json)
 
 # Develop
 
