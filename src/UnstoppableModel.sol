@@ -32,6 +32,8 @@ contract UnstoppableModel is Ownable {
     event SuspectState(uint256 indexed stateId, address suspectedBy, uint256 suspectedAt, string url);
 //    function reviewSuspect(uint256 stateId, bool isSuspectValid) external onlyOwner {
     event ReviewSuspect(uint256 indexed stateId, bool isSuspectValid, string url);
+    event LearningPeriodDeleted(uint256 learningPeriodId);
+    event ModelStateDeleted(uint256 stateId);
 //    TODO: event avout resolution...
 
     // Each future state should be better than the previous one, otherwise it is possible to suspect.
@@ -64,7 +66,8 @@ contract UnstoppableModel is Ownable {
     ModelState[] public modelStates;
 
     constructor(
-        string memory modelDataURL_
+        string memory modelDataURL_,
+        string memory initialModelStateURL
     ) Ownable(msg.sender) {
         modelDataURL = modelDataURL_;
         // Every one knows initial state of the model. Or we could provide it on construct.
@@ -77,12 +80,12 @@ contract UnstoppableModel is Ownable {
             false
         );
         learningPeriods.push(newLearningPeriod);
-        ModelState memory modelState = ModelState("QmZG8N5mxLiNCzE8Vnvtcr7UXbSVMQnHw4oCauJzpRkPM6", 0, 0, address(0), 0);
+        ModelState memory modelState = ModelState(initialModelStateURL, 0, 0, address(0), 0);
         modelStates.push(modelState);
 
         emit ApplyToLearnPeriod(msg.sender, 0, 0, 1, 0);
         uint256 currentTime = block.timestamp;
-        emit SubmitState(0, "QmZG8N5mxLiNCzE8Vnvtcr7UXbSVMQnHw4oCauJzpRkPM6", currentTime);
+        emit SubmitState(0, initialModelStateURL, currentTime);
     }
 
     function setExpectedStatesPerPeriod(uint256 newExpectedStatesPerPeriod) external onlyOwner {
@@ -164,6 +167,7 @@ contract UnstoppableModel is Ownable {
     function reviewSuspect(uint256 stateId, bool isSuspectValid) external onlyOwner {
         ModelState storage suspectedState = modelStates[stateId];
         require(suspectedState.suspectedAt > 0, "State is not suspected.");
+        string memory url = suspectedState.url;
         require(stateId > 0, "The initial state could not be suspected.");
 
         if (isSuspectValid) {
@@ -186,9 +190,11 @@ contract UnstoppableModel is Ownable {
                     }
                     console.log('Before delete learningPeriods[learningPeriodId]: %s', learningPeriodId);
                     delete learningPeriods[learningPeriodId];
+                    emit LearningPeriodDeleted(learningPeriodId);
                 }
                 console.log('Before delete modelStates[i]: %s', i);
                 delete modelStates[i];
+                emit ModelStateDeleted(i);
             }
             address sendTo = suspectedState.suspectedBy;
             (bool success, ) = payable(sendTo).call{value: collateralPerLearningPeriod}("");
@@ -201,6 +207,6 @@ contract UnstoppableModel is Ownable {
             suspectedState.suspectedBy = address(0);
         }
 
-        emit ReviewSuspect(stateId, isSuspectValid, suspectedState.url);
+        emit ReviewSuspect(stateId, isSuspectValid, url);
     }
 }

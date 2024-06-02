@@ -21,7 +21,7 @@ contract TestUnstoppableModelContract is Test {
         dev = users[1];
         vm.label(dev, "Developer");
 
-        unstoppableModelContract = new UnstoppableModel("linktodatafoo");
+        unstoppableModelContract = new UnstoppableModel("linktodatafoo", "linkToFooModelState0");
     }
 
     function testSetOwner() public {
@@ -70,6 +70,9 @@ contract TestUnstoppableModelContract is Test {
 
         // PeriodId == 1
         unstoppableModelContract.applyToLearnPeriod{value: collateralPerLearningPeriod}(currentTime);
+        // Check that realy saved.
+        (address applierAddress,,,,,) = unstoppableModelContract.learningPeriods(1);
+        assertNotEq(applierAddress, address(0));
 
         // Check: Not possible to apply for the same period.
         vm.expectRevert();
@@ -90,6 +93,11 @@ contract TestUnstoppableModelContract is Test {
         unstoppableModelContract.learningPeriods(0);
         (address worker,,,,,) = unstoppableModelContract.learningPeriods(1);
         assertEq(worker, address(0));
+
+        // Lets apply again and validate the index.
+        unstoppableModelContract.applyToLearnPeriod{value: collateralPerLearningPeriod}(currentTime);
+        (address newApplierAddress,,,,,) = unstoppableModelContract.learningPeriods(2);
+        assertNotEq(newApplierAddress, address(0));
     }
 
 //    function testFoo(uint256 x) public {
