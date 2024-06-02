@@ -24,10 +24,10 @@ contract Deploy is Deployment, Script {
         bytes memory args = abi.encode("UnstoppableModelErc20", "UMC", 18);
         UnstoppableModelErc20 token = UnstoppableModelErc20(_deployContract("UnstoppableModelErc20", "UnstoppableModelErc20", args));
 
-
         // TODO: add link
         string memory dataURI = "https:data";
-        UnstoppableModel unstoppableModelContract = UnstoppableModel(_deployContract("UnstoppableModel", "UnstoppableModel", abi.encode(dataURI)));
+        string memory modelDataURL = "QmZG8N5mxLiNCzE8Vnvtcr7UXbSVMQnHw4oCauJzpRkPM6";
+        UnstoppableModel unstoppableModelContract = UnstoppableModel(_deployContract("UnstoppableModel", "UnstoppableModel", abi.encode(dataURI, modelDataURL)));
 
         _printDeployments();
         _saveDeployment(fullDeploymentsPath);

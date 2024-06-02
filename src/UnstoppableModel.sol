@@ -66,7 +66,8 @@ contract UnstoppableModel is Ownable {
     ModelState[] public modelStates;
 
     constructor(
-        string memory modelDataURL_
+        string memory modelDataURL_,
+        string memory initialModelStateURL
     ) Ownable(msg.sender) {
         modelDataURL = modelDataURL_;
         // Every one knows initial state of the model. Or we could provide it on construct.
@@ -79,12 +80,12 @@ contract UnstoppableModel is Ownable {
             false
         );
         learningPeriods.push(newLearningPeriod);
-        ModelState memory modelState = ModelState("QmZG8N5mxLiNCzE8Vnvtcr7UXbSVMQnHw4oCauJzpRkPM6", 0, 0, address(0), 0);
+        ModelState memory modelState = ModelState(initialModelStateURL, 0, 0, address(0), 0);
         modelStates.push(modelState);
 
         emit ApplyToLearnPeriod(msg.sender, 0, 0, 1, 0);
         uint256 currentTime = block.timestamp;
-        emit SubmitState(0, "QmZG8N5mxLiNCzE8Vnvtcr7UXbSVMQnHw4oCauJzpRkPM6", currentTime);
+        emit SubmitState(0, initialModelStateURL, currentTime);
     }
 
     function setExpectedStatesPerPeriod(uint256 newExpectedStatesPerPeriod) external onlyOwner {
