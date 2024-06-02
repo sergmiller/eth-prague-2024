@@ -45,6 +45,7 @@ Fraud-Proofer - Independently validates selected steps within a specific timefra
 
 ## Zircuit
 - contracts: [zircuit.json](deployments%2Fzircuit.json)
+- subgraph [self running] http://34.32.233.93:8000/subgraphs/name/unstoppable-models-zircuit
 
 # Develop
 

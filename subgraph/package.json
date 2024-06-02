@@ -13,7 +13,7 @@
     "deploy:studio:sepolia": "graph deploy --studio --network sepolia --network-file configs/sepolia-networks-config.json --version-label 0.0.1 unstoppable-models-sepolia",
     "deploy:studio:optimismsepolia": "graph deploy --studio --network optimism-sepolia --network-file configs/optimismsepolia-networks-config.json --version-label 0.0.2 unstoppable-models-optimismsep",
     "create:zircuit": "graph create --node http://localhost:8020 unstoppable-models-zircuit",
-    "deploy:zircuit": "graph deploy --node http://localhost:8020 --ipfs http://localhost:5001 --network zircuit --network-file configs/zircuit-networks-config.json --version-label 0.0.1 unstoppable-models-zircuit",
+    "deploy:zircuit": "graph deploy --node http://localhost:8020 --ipfs http://localhost:5001 --network local --network-file configs/zircuit-networks-config.json --version-label 0.0.1 unstoppable-models-zircuit",
     "test": "graph test",
     "graph-node": "docker-compose up -d",
     "graph-local-clean": "docker-compose down -v",
