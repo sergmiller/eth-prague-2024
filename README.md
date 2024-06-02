@@ -7,7 +7,8 @@
 
 # Demo
 live: https://unstoppable-models.streamlit.app/
-video: TODO: youttube
+
+video: https://youtu.be/751XpV0xqEo
 
 # Brief Description
 
