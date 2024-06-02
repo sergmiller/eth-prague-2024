@@ -1,6 +1,10 @@
 #  Unstoppable models 
 (ETHPrague2024 project)
 
+# Demo
+live: https://unstoppable-models.streamlit.app/
+video: TODO: youttube
+
 ### Brief Description
 
 We aim to create a public ML model training initiative (as a public good) where anyone can freely submit the next weight update for the model according to a fixed algorithm on a fixed dataset.
