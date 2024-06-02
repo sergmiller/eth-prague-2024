@@ -41,6 +41,7 @@ def read_all_good_states_links():
 
 def get_all_good_models_params():
     states = read_all_good_states_links()
+    assert len(states) > 0
     state_dicts = []
     for s in states:
         ipfs_hash = s.split("/")[-1]

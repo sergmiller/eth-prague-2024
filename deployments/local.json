@@ -1,0 +1,14 @@
+{
+  "UnstoppableModel": {
+    "addr": "0xde2Bd2ffEA002b8E84ADeA96e5976aF664115E2c",
+    "blockNumber": 88,
+    "codeHash": "0xd1b4c8703a4f27d053627f7a246508facb56244f54ec2be8ff70188d2da0eb07",
+    "creationCodeHash": "0x3fca50af4fc89ff8d5868981d3ff37cdbed27ec00e1d9a21af699c5a0aa7dece"
+  },
+  "UnstoppableModelErc20": {
+    "addr": "0x986aaa537b8cc170761FDAC6aC4fc7F9d8a20A8C",
+    "blockNumber": 88,
+    "codeHash": "0x9ed99deb259de17c7a65a018512a805741aef5d58cb718bb90b7a9159805cd71",
+    "creationCodeHash": "0x91d42472f8c5249fa56d43d852e7d6a697a2055c16c8114380895a64c58598c9"
+  }
+}
