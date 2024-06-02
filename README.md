@@ -47,11 +47,12 @@ Fraud-Proofer - Independently validates selected steps within a specific timefra
 
 #### Contract
 ```bash
-source .env && CONTRACTS_ENV_NAME=sepolia && forge script --chain sepolia script/Deploy.s.sol:Deploy --rpc-url $SEPOLIA_RPC_URL --broadcast  -vvvv --legacy
+source .env && CONTRACTS_ENV_NAME=sepolia forge script --chain sepolia script/Deploy.s.sol:Deploy --rpc-url $SEPOLIA_RPC_URL --broadcast  -vvvv --legacy
 
 source .env && CONTRACTS_ENV_NAME=cardona forge script script/Deploy.s.sol:Deploy --rpc-url https://rpc.cardona.zkevm-rpc.com --broadcast  -vvvv --legacy
 source .env && CONTRACTS_ENV_NAME=linea forge script script/Deploy.s.sol:Deploy --rpc-url https://rpc.goerli.linea.build --broadcast  -vvvv --legacy
 source .env && CONTRACTS_ENV_NAME=optimismsepolia forge script script/Deploy.s.sol:Deploy --rpc-url https://optimism-sepolia.drpc.org --broadcast  -vvvv --legacy
+source .env && CONTRACTS_ENV_NAME=zircuit forge script script/Deploy.s.sol:Deploy --rpc-url https://zircuit1.p2pify.com --broadcast  -vvvv --legacy
 ```
 
 or to Anvil
