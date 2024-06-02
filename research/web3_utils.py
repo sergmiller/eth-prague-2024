@@ -17,6 +17,7 @@ def call_contract(method, arg, value=0):
     acct = w3.eth.account.from_key(pk)
     
     contract_addr = os.environ.get('CONTRACT_ADDRESS')
+    print("contract_address", contract_addr)
     with open("../abi.json", "r") as f:
         abi = json.load(f)
     contract = w3.eth.contract(address=contract_addr, abi=abi)
@@ -30,4 +31,4 @@ def call_contract(method, arg, value=0):
     unsent_tx = contract.functions[method](arg).build_transaction(args)
     signed_tx = w3.eth.account.sign_transaction(unsent_tx, private_key=acct.key)
     tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
-    return w3.eth.wait_for_transaction_receipt(tx_hash)
+    print("Call", method, arg, w3.eth.wait_for_transaction_receipt(tx_hash))

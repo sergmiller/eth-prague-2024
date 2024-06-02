@@ -22,21 +22,22 @@ import ipfs_api
 DEFAULT_SUBGRAPH_PATH = "http://localhost:8000/subgraphs/name/unstoppable-models"
 STATE_IS_DELETED = "modelStates_deleted"
 STATE_MODEL_IPFS = "modelStates_url"
+STATE_BS_TIME = "modelStates_submittedAt"
 DATA_DIR = "data"
 
 def read_all_good_states_links():
     sg = Subgrounds()
     sub = sg.load_subgraph(DEFAULT_SUBGRAPH_PATH)
     states = sg.query_df(sub.Query.modelStates())
-    valid_states = states[states[STATE_IS_DELETED] == False][STATE_MODEL_IPFS].values
-    return valid_states
-    # good_states = []
-    # for s in states[[STATE_IS_DELETED, STATE_MODEL_IPFS]].values:
-    #     is_deleted, model_path = s
-    #     if is_deleted:
-    #         continue
-    #     good_states.append(model_path)
-    # return good_states
+    good_states = []
+    good_states = []
+    for s in states[[STATE_IS_DELETED, STATE_BS_TIME, STATE_MODEL_IPFS]].values:
+        is_deleted, ts, model_path = s
+        if is_deleted:
+            continue
+        good_states.append((ts, model_path))
+    good_states = sorted(good_states, key=lambda x: x[0])
+    return [x[1] for x in good_states]
 
 
 def get_all_good_models_params():

@@ -2,6 +2,7 @@ broadcast/
 cache/
 out/
 .idea
+*.pth
 .env
 __pycache__/
 

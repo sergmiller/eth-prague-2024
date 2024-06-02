@@ -107,8 +107,9 @@ def main():
     task = get_default_task()
     while True:
         losses = calc_losses(task)
+        print(losses)
         draw(losses)
-        time.sleep(10)
+        time.sleep(5)
 
 
 # fig, ax = plt.subplots()
