@@ -10,6 +10,7 @@ fs_permissions = [
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
 [rpc_endpoints]
 sepolia = "${SEPOLIA_RPC_URL}"
+cardona = "https://rpc.cardona.zkevm-rpc.com"
 
 [etherscan]
 sepolia = { key = "${ETHERSCAN_API_KEY}" }
