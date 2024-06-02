@@ -13,6 +13,7 @@ sepolia = "${SEPOLIA_RPC_URL}"
 cardona = "https://rpc.cardona.zkevm-rpc.com"
 linea = "https://rpc.goerli.linea.build"
 optimismsepolia = "https://optimism-sepolia.drpc.org"
+zircuit = "https://zircuit1.p2pify.com/"
 
 [etherscan]
 sepolia = { key = "${ETHERSCAN_API_KEY}" }
