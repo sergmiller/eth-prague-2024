@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 
 from subgrounds import Subgrounds
 import ipfs_api
+import requests
 
 
 # DEFAULT_SUBGRAPH_PATH = "http://localhost:8000/subgraphs/name/unstoppable-models"
@@ -38,6 +39,10 @@ def read_all_good_states_links():
     good_states = sorted(good_states, key=lambda x: x[0])
     return [x[1] for x in good_states]
 
+def get_ipfs(ipfs_hash, path):
+    r = requests.post("http://34.32.233.93:5001/api/v0/cat?arg=" + ipfs_hash)
+    with open(path, "wb") as f:
+        f.write(r.content)
 
 def get_all_good_models_params():
     states = read_all_good_states_links()
@@ -47,7 +52,9 @@ def get_all_good_models_params():
         ipfs_hash = s.split("/")[-1]
         assert ipfs_hash[0] == "Q"
         ipfs_api.http_client.get(ipfs_hash, DATA_DIR)
-        state_dict = torch.load(os.path.join(DATA_DIR, ipfs_hash))
+        path = os.path.join(DATA_DIR, ipfs_hash)
+        get_ipfs(ipfs_hash, path)
+        state_dict = torch.load(path)
         state_dicts.append(state_dict)
     return state_dicts
         
