@@ -1,0 +1,12 @@
+{
+  "optimism-sepolia": {
+    "UnstoppableModelErc20": {
+      "address": "0x004C579e625A88fD3aBb5aF5b7D21247a1AA88D5",
+      "startBlock": 12746288
+    },
+    "UnstoppableModel": {
+      "address": "0x0634a46582b84ADDcBBd9C9a9442213E6F2134Aa",
+      "startBlock": 12746288
+    }
+  }
+}
