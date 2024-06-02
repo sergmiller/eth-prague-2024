@@ -11,6 +11,8 @@
     "deploy:studio:cardona": "graph deploy --studio --network polygon-zkevm-cardona --network-file configs/cardona-networks-config.json --version-label 0.0.1 unstoppable-models",
     "deploy:studio:linea": "graph deploy --studio --network linea-sepolia --network-file configs/linea-networks-config.json --version-label 0.0.1 unstoppable-models-linea",
     "deploy:studio:optimismsepolia": "graph deploy --studio --network optimism-sepolia --network-file configs/optimismsepolia-networks-config.json --version-label 0.0.1 unstoppable-models-optimismsep",
+    "create:zircuit": "graph create --node http://localhost:8020 unstoppable-models-zircuit",
+    "deploy:zircuit": "graph deploy --node http://localhost:8020 --ipfs http://localhost:5001 --network zircuit --network-file configs/zircuit-networks-config.json --version-label 0.0.1 unstoppable-models-zircuit",
     "test": "graph test",
     "graph-node": "docker-compose up -d",
     "graph-local-clean": "docker-compose down -v",

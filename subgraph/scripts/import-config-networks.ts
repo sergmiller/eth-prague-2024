@@ -7,7 +7,7 @@ const REQUIRED_DEPLOYED_CONTRACT_NAMES = [
   "UnstoppableModelErc20",
   "UnstoppableModel",
 ];
-const STANDS = ["local", "dev", "cardona", "optimismsepolia", "linea" ];
+const STANDS = ["local", "dev", "cardona", "optimismsepolia", "linea" , "zircuit"];
 // Subgraph repo pattern used to have config dir with networks.json to support
 //  deploy on different networks: {mainnet, mumbai, etc}.
 //  In our case when we can deploy different stands on the same network, e.g. mumbai we have
@@ -19,6 +19,7 @@ const STAND_TO_SUBGRAPH_CONFIG = {
   cardona: "cardona-networks-config.json",
   linea: "linea-networks-config.json",
   optimismsepolia: "optimismsepolia-networks-config.json",
+  zircuit: "local-networks-config.json",
 };
 const STAND_TO_SUBGRAPH_NETWORK = {
   dev: "sepolia",
@@ -26,6 +27,7 @@ const STAND_TO_SUBGRAPH_NETWORK = {
   cardona: "polygon-zkevm-cardona",
   linea: "linea-sepolia",
   optimismsepolia: "optimism-sepolia",
+  zircuit: "local",
 };
 
 // Save subgraph networks config from info of several contracts.
