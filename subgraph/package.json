@@ -9,6 +9,8 @@
     "create:local": "graph create --node http://localhost:8020 unstoppable-models",
     "deploy:local": "graph deploy --node http://localhost:8020 --ipfs http://localhost:5001 --network local --network-file configs/local-networks-config.json --version-label 0.0.0 unstoppable-models",
     "deploy:studio:cardona": "graph deploy --studio --network polygon-zkevm-cardona --network-file configs/cardona-networks-config.json --version-label 0.0.1 unstoppable-models",
+    "deploy:studio:linea": "graph deploy --studio --network linea-sepolia --network-file configs/linea-networks-config.json --version-label 0.0.1 unstoppable-models-linea",
+    "deploy:studio:optimismsepolia": "graph deploy --studio --network optimism-sepolia --network-file configs/optimismsepolia-networks-config.json --version-label 0.0.1 unstoppable-models-optimismsep",
     "test": "graph test",
     "graph-node": "docker-compose up -d",
     "graph-local-clean": "docker-compose down -v",

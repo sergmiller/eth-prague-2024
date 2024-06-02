@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: UnstoppableModel
-    network: local
+    network: optimism-sepolia
     source:
       abi: UnstoppableModel
-      address: "0x3347B4d90ebe72BeFb30444C9966B2B990aE9FcB"
-      startBlock: 65
+      address: "0x6Bee58540Bb0BCf366029D63e8111A0eB76FBFE7"
+      startBlock: 12745300
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7

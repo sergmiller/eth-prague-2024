@@ -29,21 +29,41 @@ Validator - Token holders who resolve disputes. Validators receive rewards regar
 
 Fraud-Proofer - Independently validates selected steps within a specific timeframe and can escalate disputes to the Validator if suspicious activity is detected (posting a deposit). If a correctly identified error is confirmed by the Validator, the Fraud-Proofer receives the Worker's stake.
 
+# Deployments
+
+## Cardona
+- contracts: [deployments](deployments/cardona.json)
+- subgraph: https://thegraph.com/studio/subgraph/unstoppable-models
+
+# Optimism Sepolia
+- contracts: [deployments](deployments/optimismsepolia.json)
+- subgraph: https://api.studio.thegraph.com/query/77200/unstoppable-models-optimismsep/0.0.1
+
 # Develop
 
 ## Contract
 
 ### Deploy
 
+#### Contract
 ```bash
-source .env && forge script --chain sepolia script/Deploy.s.sol:Deploy --rpc-url $SEPOLIA_RPC_URL --broadcast  -vvvv --legacy
+source .env && CONTRACTS_ENV_NAME=sepolia && forge script --chain sepolia script/Deploy.s.sol:Deploy --rpc-url $SEPOLIA_RPC_URL --broadcast  -vvvv --legacy
+
+source .env && CONTRACTS_ENV_NAME=cardona forge script script/Deploy.s.sol:Deploy --rpc-url https://rpc.cardona.zkevm-rpc.com --broadcast  -vvvv --legacy
+source .env && CONTRACTS_ENV_NAME=linea forge script script/Deploy.s.sol:Deploy --rpc-url https://rpc.goerli.linea.build --broadcast  -vvvv --legacy
+source .env && CONTRACTS_ENV_NAME=optimismsepolia forge script script/Deploy.s.sol:Deploy --rpc-url https://optimism-sepolia.drpc.org --broadcast  -vvvv --legacy
 ```
 
 or to Anvil
 ```
-forge script script/Deploy.s.sol:Deploy --fork-url http://localhost:8545 --broadcast
+CONTRACTS_ENV_NAME=local forge script script/Deploy.s.sol:Deploy --fork-url http://localhost:8545 --broadcast  --legacy
 ```
 
 questions:
 - How DAO would be incentivised to act honestly? Like not to collude with the Worker to get the Worker's stake?
 - Do you have a specific dataset in mind?
+
+#### Subgraph
+```bash
+npm run import-config-networks && npm run create:local && npm run deploy:local
+```
