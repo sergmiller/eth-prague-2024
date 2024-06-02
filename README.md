@@ -1,7 +1,9 @@
 #  Unstoppable models 
 (ETHPrague2024 project)
 
-#AI #docker #streamlit #solidity #foundry #forge # 
+#AI #LLM #docker #streamlit #solidity #foundry #forge #ipfs #subgraph #DAO #decentralized #ethereum #zk
+#byzantineTraining
+#optimism #cardona #zircuit #linea #sepolia
 
 # Demo
 live: https://unstoppable-models.streamlit.app/
