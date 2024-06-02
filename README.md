@@ -1,15 +1,42 @@
 #  Unstoppable models 
 (ETHPrague2024 project)
 
+#AI #docker #streamlit #solidity #foundry #forge # 
+
 # Demo
 live: https://unstoppable-models.streamlit.app/
 video: TODO: youttube
 
-### Brief Description
+# Brief Description
 
 We aim to create a public ML model training initiative (as a public good) where anyone can freely submit the next weight update for the model according to a fixed algorithm on a fixed dataset.
 
-### Detailed Description
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Detailed Description](#detailed-description)
+  - [Roles](#roles)
+- [Realisation](#realisation)
+  - [Scheme](#scheme)
+  - [Off-chain parts](#off-chain-parts)
+    - [Frontend](#frontend)
+    - [Worker](#worker)
+  - [Blockchain Related Parts](#blockchain-related-parts)
+- [Deployments](#deployments)
+  - [Cardona](#cardona)
+  - [Optimism Sepolia](#optimism-sepolia)
+  - [Sepolia](#sepolia)
+  - [Zircuit](#zircuit)
+  - [Linea](#linea)
+- [Develop](#develop)
+  - [Contract](#contract)
+    - [Deploy](#deploy)
+      - [Contract](#contract-1)
+      - [Subgraph](#subgraph)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# Detailed Description
 
 The initial weights $\theta_0$ for the model $f$ are publicly initialized offchain.
 
@@ -25,7 +52,7 @@ The new weights are computed as $\theta_{i+1} = \theta_i - \nu \nabla_{\theta_i}
 
 Every k steps, the updated weights are published offchain.
 
-### Roles
+## Roles
 
 Worker - Acquires a mutex (with a deposit) and attempts to perform a weight update step (or k steps). The Worker then publishes the updated weights on IPFS.
 
@@ -33,8 +60,12 @@ Validator - Token holders who resolve disputes. Validators receive rewards regar
 
 Fraud-Proofer - Independently validates selected steps within a specific timeframe and can escalate disputes to the Validator if suspicious activity is detected (posting a deposit). If a correctly identified error is confirmed by the Validator, the Fraud-Proofer receives the Worker's stake.
 
-# Off-chain parts
-### frontend
+# Realisation
+## Scheme
+![Overview Scheme](docs/scheme.png)
+
+## Off-chain parts
+### Frontend
 observes whole training process
 ```
 cd research && \
@@ -43,13 +74,15 @@ python3 -m streamlit run frontend-state-listener.py
 ```
 (by default it listens to Cardona smart-contract instance)
 
-### worker
+### Worker
 performs updates and syncs results with contract
 ```
 cd research && \
 python3 -m pip install -r requirements.txt && \
 python3 worker.py
 ```
+
+## Blockchain Related Parts
 
 # Deployments
 
@@ -71,9 +104,6 @@ python3 worker.py
 
 ## Linea
 - not enough balance =(
-
-# Scheme
-![Overview Scheme](docs/scheme.png)
 
 # Develop
 
