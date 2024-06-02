@@ -19,7 +19,7 @@ const STAND_TO_SUBGRAPH_CONFIG = {
   cardona: "cardona-networks-config.json",
   linea: "linea-networks-config.json",
   optimismsepolia: "optimismsepolia-networks-config.json",
-  zircuit: "local-networks-config.json",
+  zircuit: "zircuit-networks-config.json",
 };
 const STAND_TO_SUBGRAPH_NETWORK = {
   sepolia: "sepolia",
