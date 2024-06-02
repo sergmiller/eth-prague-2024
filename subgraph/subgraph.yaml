@@ -9,8 +9,8 @@ dataSources:
     network: local
     source:
       abi: UnstoppableModel
-      address: "0x0B306BF915C4d645ff596e518fAf3F9669b97016"
-      startBlock: 23
+      address: "0x3347B4d90ebe72BeFb30444C9966B2B990aE9FcB"
+      startBlock: 65
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -24,16 +24,16 @@ dataSources:
         - name: UnstoppableModel
           file: ../out/UnstoppableModel.sol/UnstoppableModel.json
       eventHandlers:
-#        - event: Initialized(uint8)
-#          handler: handleInitialized
         - event: ApplyToLearnPeriod(indexed address,uint256,uint256,uint256,uint256)
           handler: handleApplyToLearnPeriod
         - event: SubmitState(indexed uint256,string,uint256)
           handler: handleSubmitState
-        - event: SuspectState(indexed uint256,address,uint256)
+        - event: SuspectState(indexed uint256,address,uint256,string)
           handler: handleSuspectState
         - event: WithdrawCollateralPerLearningPeriod(indexed uint256,address)
           handler: handleWithdrawCollateralPerLearningPeriod
-#      blockHandlers:
-#        - handler: handleNewBlock
+        - event: ReviewSuspect(indexed uint256,bool,string)
+          handler: handleReviewSuspect
+        - event: LearningPeriodDeleted(uint256)
+          handler: handleLearningPeriodDeleted
       file: ./src/mappings/unstoppableModel.ts

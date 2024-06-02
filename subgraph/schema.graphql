@@ -12,7 +12,7 @@ type Token @entity {
 }
 
 type LearningPeriod @entity {
-  id: ID! # Number in list
+  id: ID! # Number in list.
   worker: String!
   start: BigInt!
   end: BigInt!
