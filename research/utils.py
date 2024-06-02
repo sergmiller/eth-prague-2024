@@ -16,7 +16,9 @@ from subgrounds import Subgrounds
 import ipfs_api
 
 
-DEFAULT_SUBGRAPH_PATH = "http://localhost:8000/subgraphs/name/unstoppable-models"
+# DEFAULT_SUBGRAPH_PATH = "http://localhost:8000/subgraphs/name/unstoppable-models"
+DEFAULT_SUBGRAPH_PATH = "https://api.studio.thegraph.com/query/77200/unstoppable-models/0.0.3"
+
 STATE_IS_DELETED = "modelStates_deleted"
 STATE_MODEL_IPFS = "modelStates_url"
 STATE_BS_TIME = "modelStates_submittedAt"
