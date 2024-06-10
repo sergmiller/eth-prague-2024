@@ -32,6 +32,20 @@ contract Deploy is Deployment, Script {
         _printDeployments();
         _saveDeployment(fullDeploymentsPath);
 
+//        // TODO: comment: do some debug staff from here.
+//        TODO: move to separate script for local dev.
+//        uint collateralPerLearningPeriod = unstoppableModelContract.collateralPerLearningPeriod();
+//        uint256 currentTime = block.timestamp;
+//        unstoppableModelContract.applyToLearnPeriod{value: collateralPerLearningPeriod}(currentTime);
+//        unstoppableModelContract.submitState("QmZRLQqeazAjcu3PMdJstq2hN1vC8oMrEMBS3eGiHcnP5E");
+//
+//        unstoppableModelContract.suspectState{value: collateralPerLearningPeriod}(1);
+//        unstoppableModelContract.reviewSuspect(1, true);
+//
+//        unstoppableModelContract.applyToLearnPeriod{value: collateralPerLearningPeriod}(currentTime);
+//        unstoppableModelContract.submitState("QmZPLDcxYVxwTwpKU36xmmJ6kiFiVL5BqWjf6K5bWfLD8n");
+//        unstoppableModelContract.submitState("QmW3Tar6cPjufwkgAfZrfsRRWM7RJSqCxiRJNPfv6X54Uy");
+
         vm.stopBroadcast();
     }
 }

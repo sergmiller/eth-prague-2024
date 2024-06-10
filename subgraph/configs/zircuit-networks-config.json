@@ -1,0 +1,12 @@
+{
+  "local": {
+    "UnstoppableModelErc20": {
+      "address": "0x030B07480f0Edf79A485250777EF7810E4ECff4A",
+      "startBlock": 8698577
+    },
+    "UnstoppableModel": {
+      "address": "0x6Bee58540Bb0BCf366029D63e8111A0eB76FBFE7",
+      "startBlock": 8698577
+    }
+  }
+}

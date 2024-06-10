@@ -1,0 +1,72 @@
+volumes:
+  postgres:
+  ipfs:
+  chain-rpc:
+
+services:
+  ipfs:
+    image: ipfs/go-ipfs
+    ports:
+      - "5001:5001"
+    volumes:
+      - ipfs:/data/ipfs
+
+  postgres:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    command: ["postgres", "-cshared_preload_libraries=pg_stat_statements"]
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: ""
+      PGDATA: "/var/lib/postgresql/data"
+      POSTGRES_INITDB_ARGS: "-E UTF8 --locale=C"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  chain-rpc:
+    image: ${CHAIN_RPC_IMAGE:-chain-rpc}
+    environment:
+      LOCAL_CHAIN_BLOCK_MINING_INTERVAL: 1
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      target: chain-rpc
+    volumes:
+      - chain-rpc:/data
+    ports:
+      - "8545:8545"
+    healthcheck:
+      test: |
+        curl -s -X POST 'http://localhost:8545' -H 'Content-Type: application/json' \
+          --data '{"jsonrpc":"2.0", "method":"eth_chainId", "params":[], "id":1}' \
+          | jq -e '.result != null'
+      interval: 8s
+      timeout: 10s
+      retries: 20
+
+  graph-node:
+    image: graphprotocol/graph-node:v0.33.0
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+      - "8020:8020"
+      - "8030:8030"
+      - "8040:8040"
+    depends_on:
+      - ipfs
+      - postgres
+      - chain-rpc
+    environment:
+      postgres_host: postgres
+      postgres_user: postgres
+      postgres_pass: ""
+      postgres_db: postgres
+      ipfs: "ipfs:5001"
+      #ethereum: "local:http://chain-rpc:8545"
+      ethereum: "local:https://zircuit1.p2pify.com"
+      GRAPH_LOG: info
+      # https://github.com/graphprotocol/graph-node/issues/3159#issuecomment-1062827725
+      ETHEREUM_REORG_THRESHOLD: 1
+      ETHEREUM_ANCESTOR_COUNT: 1
