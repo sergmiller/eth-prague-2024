@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: UnstoppableModel
-    network: local
+    network: polygon-zkevm-cardona
     source:
       abi: UnstoppableModel
-      address: "0x6Bee58540Bb0BCf366029D63e8111A0eB76FBFE7"
-      startBlock: 8698577
+      address: "0x0cc768030c96eD87CF7c004b3357b0D18076525D"
+      startBlock: 3965017
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7

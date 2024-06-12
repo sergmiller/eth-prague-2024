@@ -1,12 +1,12 @@
 {
   "polygon-zkevm-cardona": {
     "UnstoppableModelErc20": {
-      "address": "0x4124EC2F7eD32E86Aa84f3348b0a6370Ae8508c2",
-      "startBlock": 3663873
+      "address": "0xa75f8aE3edC8cB74611cF0bb8EdB1bA98DD1A3BD",
+      "startBlock": 3965017
     },
     "UnstoppableModel": {
-      "address": "0x4863a9a0f37490cc8840060114206548b23d0287",
-      "startBlock": 3663873
+      "address": "0x0cc768030c96eD87CF7c004b3357b0D18076525D",
+      "startBlock": 3965017
     }
   }
 }
