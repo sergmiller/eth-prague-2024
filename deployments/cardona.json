@@ -1,13 +1,13 @@
 {
   "UnstoppableModel": {
-    "addr": "0x0cc768030c96eD87CF7c004b3357b0D18076525D",
-    "blockNumber": 3965017,
+    "addr": "0x8CCF4E32f4Ab25e5b121D3e6E06379b59CB408D7",
+    "blockNumber": 4000058,
     "codeHash": "0x2b7e34a11ca44a72dbd674acc013e7a5a2d6a2c4c65938f02376e810940f787f",
-    "creationCodeHash": "0x49ae6db1be69be6835c4e43528c36233c8cfaf03187d4d720b02d44666abfd2d"
+    "creationCodeHash": "0x42f5de20f68309dc19d5a810ff1c158278da7286e589dfe03cee7107ebf1e4de"
   },
   "UnstoppableModelErc20": {
-    "addr": "0xa75f8aE3edC8cB74611cF0bb8EdB1bA98DD1A3BD",
-    "blockNumber": 3965017,
+    "addr": "0xB664f8312210d806bc51c0EE28d08abe4314CA93",
+    "blockNumber": 4000058,
     "codeHash": "0x2dce5b4342a1d18bf3be86020449ecc8998f64a4d419268581f6abbe9fe380a2",
     "creationCodeHash": "0x2a893ce4d458e5c159ba3472caae766badd960b2e2b68753c4c0356b32ada89f"
   }

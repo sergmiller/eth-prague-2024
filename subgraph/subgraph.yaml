@@ -9,8 +9,8 @@ dataSources:
     network: polygon-zkevm-cardona
     source:
       abi: UnstoppableModel
-      address: "0x0cc768030c96eD87CF7c004b3357b0D18076525D"
-      startBlock: 3965017
+      address: "0x8CCF4E32f4Ab25e5b121D3e6E06379b59CB408D7"
+      startBlock: 4000058
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
