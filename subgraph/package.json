@@ -8,7 +8,7 @@
     "deploy:studio:stage": "graph deploy --network mumbai --network-file config/networks.json unstoppable-models",
     "create:local": "graph create --node http://localhost:8020 unstoppable-models",
     "deploy:local": "graph deploy --node http://localhost:8020 --ipfs http://localhost:5001 --network local --network-file configs/local-networks-config.json --version-label 0.0.0 unstoppable-models",
-    "deploy:studio:cardona": "graph deploy --studio --network polygon-zkevm-cardona --network-file configs/cardona-networks-config.json --version-label 0.0.4 unstoppable-models",
+    "deploy:studio:cardona": "graph deploy --studio --network polygon-zkevm-cardona --network-file configs/cardona-networks-config.json --version-label 0.0.6 unstoppable-models",
     "deploy:studio:linea": "graph deploy --studio --network linea-sepolia --network-file configs/linea-networks-config.json --version-label 0.0.1 unstoppable-models-linea",
     "deploy:studio:sepolia": "graph deploy --studio --network sepolia --network-file configs/sepolia-networks-config.json --version-label 0.0.1 unstoppable-models-sepolia",
     "deploy:studio:optimismsepolia": "graph deploy --studio --network optimism-sepolia --network-file configs/optimismsepolia-networks-config.json --version-label 0.0.2 unstoppable-models-optimismsep",

@@ -91,7 +91,7 @@ python3 worker.py
 
 ## Cardona
 - contracts: [deployments](deployments/cardona.json)
-- subgraph: https://api.studio.thegraph.com/query/77200/unstoppable-models/0.0.4
+- subgraph: https://api.studio.thegraph.com/query/77200/unstoppable-models/0.0.6
 
 ## Optimism Sepolia
 - contracts: [deployments](deployments/optimismsepolia.json)
