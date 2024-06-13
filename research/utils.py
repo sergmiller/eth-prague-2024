@@ -16,9 +16,13 @@ from subgrounds import Subgrounds
 import ipfs_api
 import requests
 
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 # DEFAULT_SUBGRAPH_PATH = "http://localhost:8000/subgraphs/name/unstoppable-models"
-DEFAULT_SUBGRAPH_PATH = "https://api.studio.thegraph.com/query/77200/unstoppable-models/0.0.3"
+DEFAULT_SUBGRAPH_PATH = os.environ.get("DEFAULT_SUBGRAPH_PATH")
 
 STATE_IS_DELETED = "modelStates_deleted"
 STATE_MODEL_IPFS = "modelStates_url"
@@ -43,12 +47,14 @@ def read_all_good_states_links():
     return [x[1] for x in good_states]
 
 def get_ipfs(ipfs_hash, path):
-    r = requests.post("http://34.32.233.93:5001/api/v0/cat?arg=" + ipfs_hash)
+    ipfs_ip = os.environ.get("IPFS_NODE")
+    r = requests.post(ipfs_ip + "/api/v0/cat?arg=" + ipfs_hash)
     with open(path, "wb") as f:
         f.write(r.content)
 
 def get_all_good_models_params():
     states = read_all_good_states_links()
+    print(states)
     assert len(states) > 0
     state_dicts = []
     for s in states:
