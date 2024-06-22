@@ -5,6 +5,7 @@ import numpy as np
 
 import numpy as np
 import pandas as pd
+import os
 import torch
 
 import time
@@ -15,7 +16,7 @@ import matplotlib.pyplot as plt
 
 from utils import Task, model_fn, criterion, compare, get_algorithm, get_default_task, get_all_good_models_params
 
-
+CONTRACT_ADDRESS = os.environ.get('CONTRACT_ADDRESS')
 
 def publish_task():
     global task
@@ -118,13 +119,43 @@ def main():
 # clear_output(wait=True)
 
 
-# Set the title of the app
-st.title('Model train loss')
+def stream_markdown(markdown_text):
+    for word in markdown_text.split(" "):
+        yield word + " "
+        time.sleep(0.04)
 
+st.header('Unstoppable AI', divider='rainbow')
+overview_markdown = (
+    'We aim to create a public ML model training initiative (as a public good) where anyone can freely submit the next '
+    'weight update for the model according to a fixed algorithm on a fixed dataset. :sunglasses:')
+st.write_stream(stream_markdown(overview_markdown))
+st.link_button("View Presentation", f"https://github.com/whynft/unstoppable-models-mvp/blob/main/docs/Unstoppable%20Models.pdf")
+
+st.header("Features")
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.subheader("Continuous Improvement", divider='rainbow')
+    st.write_stream(stream_markdown("The model can only be improved, as updates are verified for correctness before being accepted"))
+    # st.image("https://static.streamlit.io/examples/cat.jpg")
+
+with col2:
+    st.subheader("True Open Source", divider='rainbow')
+    st.write_stream(stream_markdown("The initiative ensures that the model and its updates remain open and accessible to everyone"))
+
+with col3:
+    st.subheader("Censorship Resistance", divider='rainbow')
+    st.write_stream(stream_markdown("Once a AI-model is published freely, it cannot be regulated or stopped by any central authority (unlike GPT-3)"))
+
+st.header("Live Demo")
+st.write_stream(stream_markdown(
+    'Currently, to maintain protocol demo contracts were deployed on Cardona zkEVM (Polygon zkEVM testnet). :rocket: :rocket: :rocket:'
+))
+
+st.link_button("Explore Contract", f"https://cardona-zkevm.polygonscan.com/address/{CONTRACT_ADDRESS}")
+st.subheader('Model Train Loss')
 # scenario()
 
 main()
-
 
 
 # Create a line chart
