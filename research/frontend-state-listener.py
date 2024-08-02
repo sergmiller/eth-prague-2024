@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 
 from utils import Task, model_fn, criterion, compare, get_algorithm, get_default_task, get_all_good_models_params
 
-CONTRACT_ADDRESS = os.environ.get('CONTRACT_ADDRESS')
+CONTRACT_ADDRESS = os.environ.get('CONTRACT_ADDRESS', "0x8CCF4E32f4Ab25e5b121D3e6E06379b59CB408D7")
 
 def publish_task():
     global task
