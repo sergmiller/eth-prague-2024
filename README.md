@@ -65,7 +65,7 @@ Fraud-Proofer - Independently validates selected steps within a specific timefra
 
 # Realisation
 ## Scheme
-![Overview Scheme](docs/scheme.png)
+![Overview Scheme](docs/scheme.jpg)
 
 ## Off-chain parts
 ### Frontend
