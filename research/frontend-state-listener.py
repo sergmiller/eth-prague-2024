@@ -143,8 +143,8 @@ with col2:
     st.write_stream(stream_markdown("The initiative ensures that the model and its updates remain open and accessible to everyone"))
 
 with col3:
-    st.subheader("Censorship Resistance", divider='rainbow')
-    st.write_stream(stream_markdown("Once a AI-model is published freely, it cannot be regulated or stopped by any central authority (unlike GPT-3)"))
+    st.subheader("Ownership Resistance", divider='rainbow')
+    st.write_stream(stream_markdown("Once an AI model is published, it cannot be regulated or stopped by any proprietary authority (unlike GPT-3)"))
 
 st.header("Live Demo")
 st.write_stream(stream_markdown(
