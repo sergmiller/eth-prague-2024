@@ -117,7 +117,7 @@ def main():
         losses = calc_losses(task)
         print(losses)
         draw(losses)
-        time.sleep(10001)
+        time.sleep(10)
 
 
 # fig, ax = plt.subplots()
@@ -130,8 +130,7 @@ def main():
 def stream_markdown(markdown_text):
     for word in markdown_text.split(" "):
         yield word + " "
-        # TODO: uncomment
-        # time.sleep(0.04)
+        time.sleep(0.04)
 
 
 
