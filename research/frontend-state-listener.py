@@ -130,7 +130,7 @@ def main():
 def stream_markdown(markdown_text):
     for word in markdown_text.split(" "):
         yield word + " "
-        time.sleep(0.04)
+        # time.sleep(0.04)
 
 
 
