@@ -6,7 +6,9 @@
 #optimism #cardona #zircuit #linea #sepolia
 
 # Demo
-live: https://unstoppable-ai.why-nft.com/ or https://unstoppable-models.streamlit.app/
+live: https://unstoppable-ai.why-nft.com/ 
+
+(~~https://unstoppable-models.streamlit.app/~~ deprecated)
 
 video: https://youtu.be/751XpV0xqEo
 
